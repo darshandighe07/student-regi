@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Student Result</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        background: linear-gradient(135deg, #e0f2ff, #fefefe);
+        font-family: "Segoe UI", sans-serif;
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* ===== Header ===== */
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 30px;
+        padding: 15px 25px;
+        background: linear-gradient(90deg, #f5644b, #ffd06a);
+        border-radius: 15px;
+        color: white;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        animation: slideDown 0.8s ease;
+      }
+
+      @keyframes slideDown {
+        from {
+          transform: translateY(-30px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      /* ===== Student Info Card ===== */
+      .student-card {
+        border-radius: 16px;
+        background: linear-gradient(135deg, #ffffff, #f1fbff);
+        border-left: 6px solid #f0680d;
+        transition:
+          transform 0.4s,
+          box-shadow 0.4s;
+        animation: slideUp 1s ease;
+      }
+
+      .student-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      @keyframes slideUp {
+        from {
+          transform: translateY(40px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .profile-img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid #f0600d;
+        transition: transform 0.4s;
+      }
+
+      .profile-img:hover {
+        transform: scale(1.08) rotate(2deg);
+      }
+
+      .info-title {
+        color: #4df00d;
+        font-weight: 700;
+      }
+
+      .info-label {
+        font-weight: 600;
+        color: #6c757d;
+      }
+
+      .info-value {
+        font-weight: 600;
+        color: #fd0d0d;
+      }
+
+      /* ===== Logout Button Inside Card ===== */
+      .logout-btn {
+        background: #ff4d4d;
+        color: white;
+        border: none;
+        padding: 10px 22px;
+        border-radius: 25px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .logout-btn:hover {
+        background: #e60000;
+        transform: scale(1.08);
+        box-shadow: 0 8px 20px rgba(255, 0, 0, 0.4);
+      }
+
+      /* ===== Result Table Card ===== */
+      .result-card {
+        border-radius: 16px;
+        background: #ffffff;
+        border-top: 6px solid #fd8d0d;
+        animation: fadeIn 1.2s ease;
+      }
+
+      .table thead {
+        background: linear-gradient(135deg, #0d6efd, #0dcaf0);
+      }
+
+      .table thead th {
+        color: #fff;
+        font-weight: 600;
+        border: none;
+      }
+
+      .table tbody tr {
+        transition: 0.3s;
+      }
+
+      .table tbody tr:hover {
+        background-color: #f1f8ff;
+        transform: scale(1.01);
+      }
+
+      /* ===== Grade Badge ===== */
+      .badge-grade {
+        background: #198754;
+        font-size: 14px;
+      }
+
+      /* ===== Summary ===== */
+      .summary-box {
+        background: linear-gradient(135deg, #fd0d0d, #f0a80d);
+        color: #fff;
+        border-radius: 12px;
+        padding: 15px;
+        font-weight: 600;
+        transition: 0.3s;
+      }
+
+      .summary-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <div class="header">
+      <h2 class="m-0">Student Dashboard</h2>
+    </div>
+
+    <div class="container my-5">
+      <!-- ===== Student Basic Info ===== -->
+      <div class="card shadow student-card p-4 mb-5">
+        <div class="d-flex align-items-center mb-4">
+          <img src="a1.png" class="profile-img me-4" alt="" />
+          <div>
+            <h4 class="info-title mb-1">Student Basic Info</h4>
+            <small class="text-muted">Daffodil International University</small>
+          </div>
+        </div>
+
+        <div class="row mb-2">
+          <div class="col-md-4 info-label">Name</div>
+          <div class="col-md-8 info-value" id="name"></div>
+        </div>
+
+        <div class="row mb-2">
+          <div class="col-md-4 info-label">Department</div>
+          <div class="col-md-8 info-value">Training</div>
+        </div>
+
+        <div class="row mb-2">
+          <div class="col-md-4 info-label">Mobile Number</div>
+          <div class="col-md-8 info-value" id="num"></div>
+        </div>
+
+        <div class="row mb-2">
+          <div class="col-md-4 info-label">Password</div>
+          <div class="col-md-8 info-value" id="pass"></div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col-md-4 info-label">Course</div>
+          <div class="col-md-8 info-value" id="co"></div>
+        </div>
+
+        <!-- Logout Button at Bottom -->
+        <div class="text-end">
+          <button class="logout-btn" onclick="al()">Logout</button>
+        </div>
+      </div>
+
+      <!-- ===== Result Table ===== -->
+      <div class="card shadow result-card p-4">
+        <div class="table-responsive">
+          <table class="table align-middle">
+            <thead>
+              <tr>
+                <th style="color: black">Course Code</th>
+                <th style="color: black">Course Title</th>
+                <th style="color: black">Mark</th>
+                <th style="color: black">Grade</th>
+              
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Hyper Text MarkUp Language</td>
+                <td>80/100</td>
+                <td><span class="badge badge-grade">A+</span></td>
+                
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Cascading Style Sheets</td>
+                <td>90/100</td>
+                <td><span class="badge badge-grade">A+</span></td>
+             
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Bootstrap</td>
+                <td>67/100</td>
+                <td><span class="badge badge-grade">B+</span></td>
+                
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>JavaScript</td>
+                <td>87/100</td>
+                <td><span class="badge badge-grade">A+</span></td>
+                
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>English</td>
+                <td>60/100</td>
+                <td><span class="badge badge-grade">C+</span></td>
+               
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ===== Summary ===== -->
+        <div class="row mt-4 text-center g-3">
+          <div class="col-md-4">
+            <div class="summary-box">Total Credit Requirement<br />9</div>
+          </div>
+          <div class="col-md-4">
+            <div class="summary-box">Total Credit Taken<br />7.5</div>
+          </div>
+          <div class="col-md-4">
+            <div class="summary-box">Pass with <br> 76.8%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      let users = JSON.parse(localStorage.getItem("user")) || [];
+
+      let nam = users.find((e) => e.name);
+      let numb = users.find((e) => e.mobile);
+      let pas = users.find((e) => e.password);
+      let co = users.find((e) => e.cource);
+      if (nam) {
+        document.getElementById("name").innerHTML = nam.name;
+      }
+      if (numb) {
+        document.getElementById("num").innerHTML = numb.mobile;
+      }
+      if (pas) {
+        document.getElementById("pass").innerHTML = pas.password;
+      }
+      if (co) {
+        document.getElementById("co").innerHTML = "BCA 1<sup>st</sup> Year";
+      }
+
+      function al() {
+        let w = confirm("Are you sure you want to logout?");
+        if (w) {
+          window.location.href = "po.html";
+        }
+      }
+    </script>
+  </body>
+</html>

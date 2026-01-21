@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Class Login</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      body {
+        height: 100vh;
+        background: linear-gradient(135deg, #4facfe, #00f2fe);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .login-box {
+        background: #fff;
+        padding: 30px;
+        width: 320px;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .login-box h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: bold;
+        color: #555;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        outline: none;
+        font-size: 14px;
+      }
+
+      input:focus {
+        border-color: #4facfe;
+      }
+
+      button {
+        width: 100%;
+        padding: 10px;
+        background: #4facfe;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="login-box">
+      <h2>Class Login</h2>
+
+      <label>Class Name</label>
+      <input
+        type="text"
+        placeholder="Eg: FY/SY/TY"
+        id="Class"
+        onfocus="bl(this)"
+      />
+
+      <label>Enter Class Password</label>
+      <input
+        type="password"
+        id="pass"
+        placeholder="Enter your password"
+        onfocus="bl(this)"
+      />
+
+      <button onclick="btn()">Class Check</button>
+    </div>
+
+    <script>
+      //       function btn() {
+      //   let clInput = document.getElementById("Class");
+      //   let passInput = document.getElementById("pass");
+      //    let users2 = JSON.parse(localStorage.getItem("user")) || [];
+      // let uu = users2.find(
+      //           (e) => e.cource == clInput
+      //         );
+
+      //   function hashPassword(pass) {
+      //     return btoa(pass); // learning purpose
+      //   }
+
+      //   let cl = clInput.value.trim();
+      //   let pass = passInput.value.trim();
+
+      //   // Empty validation
+      //   if (cl === "") {
+      //     clInput.style.border = "2px solid red";
+      //     return;
+      //   }
+
+      //   if (pass === "") {
+      //     passInput.style.border = "2px solid red";
+      //     return;
+      //   }
+
+      // Simulated database (multiple users)
+      let users = [
+        {
+          className: "FY",
+          password: hashPassword("1234"),
+        },
+        {
+          className: "SY",
+          password: hashPassword("SYBaap@1234"),
+        },
+        {
+          className: "TY",
+          password: hashPassword("TYBaap@4321"),
+        },
+      ];
+
+      //   let hashedPass = hashPassword(pass);
+
+      //   // Find matching user
+      //   let user = users.find(
+      //     (u) => u.className ===  uu && u.password === hashedPass
+      //   );
+
+      //   if (user) {
+      //     alert("Login Successful ✅");
+      //     window.location.href="po.html"
+      //   } else {
+      //     alert("Invalid Class or Password ❌");
+      //   }
+      // }
+
+      // function bl(ok) {
+      //   ok.style.border = "1px solid #ccc";
+      // }
+
+      function btn() {
+        let clInput = document.getElementById("Class");
+        let passInput = document.getElementById("pass");
+
+        let cl = clInput.value.trim();
+        let pass = passInput.value.trim();
+
+        function hashPassword(pass) {
+          return btoa(pass); // learning purpose
+        }
+
+        // empty validation
+        if (cl === "") {
+          clInput.style.border = "2px solid red";
+          return;
+        }
+
+        if (pass === "") {
+          passInput.style.border = "2px solid red";
+          return;
+        }
+
+        // ✅ get data from localStorage
+        let users = JSON.parse(localStorage.getItem("user")) || [];
+
+        let hashedPass = hashPassword(pass);
+
+        // ✅ CORRECT COMPARISON
+        let user = users.find((e) => e.cource === cl);
+
+        if (user && pass === "FY@1234") {
+          alert("Login Successful ✅");
+          window.location.href = "student.html";
+        }
+        else if (user && pass === "SY@1234") {
+          alert("Login Successful ✅");
+          window.location.href = "student.html";
+        }
+        else if (user && pass === "TY@1234") {
+          alert("Login Successful ✅");
+          window.location.href = "student.html";
+        } else {
+          alert("Invalid Course or Password ❌");
+        }
+      }
+
+      function bl(ok) {
+        ok.style.border = "1px solid #ccc";
+      }
+    </script>
+  </body>
+</html>

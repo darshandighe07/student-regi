@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Index</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.3), transparent 40%),
+        linear-gradient(135deg,#0A66C2,#004182);
+}
+
+/* Card */
+.main{
+    background:#fff;
+    width:100%;
+    max-width:420px;
+    padding:34px;
+    border-radius:22px;
+    box-shadow:0 30px 60px rgba(0,0,0,0.3);
+    animation:fadeIn 0.8s ease;
+}
+
+/* Title */
+.main::before{
+    content:"Student Registration";
+    display:block;
+    text-align:center;
+    font-size:22px;
+    font-weight:800;
+    color:#0A66C2;
+    margin-bottom:6px;
+}
+
+.main::after{
+   
+    display:block;
+    text-align:center;
+    font-size:14px;
+    color:#666;
+    margin-bottom:26px;
+}
+
+/* Form */
+.div1{
+    display:grid;
+    gap:16px;
+}
+
+.lable label{
+    font-size:14px;
+    font-weight:600;
+    color:#222;
+}
+
+/* Inputs & Select */
+.text input,
+.text select{
+    width:100%;
+    padding:14px 16px;
+    font-size:14px;
+    border-radius:12px;
+    border:1px solid #d0d0d0;
+    background:#fafafa;
+    transition:0.3s;
+}
+
+.text input:focus,
+.text select:focus{
+    outline:none;
+    border-color:#0A66C2;
+    background:#fff;
+    box-shadow:0 0 0 3px rgba(10,102,194,0.25);
+}
+
+/* Button */
+button{
+    width:100%;
+    margin-top:28px;
+    padding:15px;
+    font-size:16px;
+    font-weight:700;
+    border-radius:30px;
+    border:none;
+    cursor:pointer;
+    color:#fff;
+    background:linear-gradient(135deg,#0A66C2,#004182);
+    transition:0.3s;
+}
+
+button:hover{
+    transform:translateY(-4px);
+    box-shadow:0 14px 35px rgba(10,102,194,0.5);
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+/* Mobile */
+@media(max-width:480px){
+    .main{
+        padding:26px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="main">
+    <div class="div1">
+
+        <div class="lable">
+            <label for="text">Your Name</label>
+        </div>
+        <div class="text">
+            <input type="text" id="text" placeholder="Enter your name" onfocus="remove(this)">
+        </div>
+
+        <div class="lable">
+            <label for="num">Your Mobile Number</label>
+        </div>
+        <div class="text">
+            <input type="number" id="num" placeholder="Enter mobile number" onfocus="remove(this)">
+        </div>
+
+        <div class="lable">
+            <label for="email">Set password</label>
+        </div>
+        <div class="text">
+            <input type="text" id="email" placeholder="Enter Strong password" onfocus="remove(this)">
+        </div>
+
+        <div class="lable">
+            <label for="selecter">Course</label>
+        </div>
+        <div class="text">
+            <select id="selecter" onfocus="remove(this)">
+                <option value="">Select Course</option>
+                <option value="FY">FY</option>
+                <option value="SY">SY</option>
+                <option value="TY">TY</option>
+                <option value="mentor">Mentor</option>
+            </select>
+        </div>
+
+    </div>
+
+    <button onclick="submit()">Submit</button>
+</div>
+
+<script src="index.js">
+    
+</script>
+</body>
+</html>
